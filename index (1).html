@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivabot - Your Golden AI Motivational Assistant</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 2rem;
+            padding: 2rem;
+            background-color: #2a2a2a;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        h2 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Goal Setting Section */
+        .goal-section {
+            margin-bottom: 2rem;
+        }
+
+        #goal-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        #goal-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        #goal-form button {
+            padding: 0.75rem 1.5rem;
+            background-color: #ffd700;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        #goal-form button:hover {
+            background-color: #ffcc00;
+        }
+
+        #goal-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        #goal-list li {
+            padding: 0.75rem;
+            background-color: #333;
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #goal-list li button {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        /* Progress Tracking Section */
+        .progress-section {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #ffd700;
+            width: 50%; /* Example progress */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Motivational Content Section */
+        .motivation-section {
+            margin-bottom: 2rem;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #ffd700;
+            text-align: center;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        #new-quote {
+            display: block;
+            margin: 1rem auto;
+            padding: 0.75rem 1.5rem;
+            background-color: #ffd700;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        #new-quote:hover {
+            background-color: #ffcc00;
+        }
+
+        /* Chat Interaction Section */
+        .interaction-section {
+            margin-bottom: 2rem;
+        }
+
+        .chat-box {
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            background-color: #333;
+            padding: 1rem;
+        }
+
+        #chat-log {
+            height: 150px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background-color: #2a2a2a;
+            border-radius: 5px;
+            border: 1px solid #444;
+        }
+
+        #chat-log div {
+            margin-bottom: 0.5rem;
+        }
+
+        #chat-log .bot {
+            color: #ffd700;
+        }
+
+        #chat-input {
+            width: calc(100% - 100px);
+            padding: 0.75rem;
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        #send-button {
+            padding: 0.75rem 1.5rem;
+            background-color: #ffd700;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        #send-button:hover {
+            background-color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Motivabot</h1>
+
+        <!-- Goal Setting Section -->
+        <section class="goal-section">
+            <h2>Set Your Goals</h2>
+            <form id="goal-form">
+                <input type="text" id="goal" placeholder="Enter your goal..." required>
+                <button type="submit">Add Goal</button>
+            </form>
+            <ul id="goal-list"></ul>
+        </section>
+
+        <!-- Progress Tracking Section -->
+        <section class="progress-section">
+            <h2>Track Your Progress</h2>
+            <div class="progress-bar">
+                <div class="progress-bar-fill"></div>
+            </div>
+            <p>You're 50% closer to your goal!</p>
+        </section>
+
+        <!-- Motivational Content Section -->
+        <section class="motivation-section">
+            <h2>Daily Motivation</h2>
+            <p class="quote" id="quote">"The only limit to our realization of tomorrow is our doubts of today." - Franklin D. Roosevelt</p>
+            <button id="new-quote">Get New Quote</button>
+        </section>
+
+        <!-- Chat Interaction Section -->
+        <section class="interaction-section">
+            <h2>Chat with Motivabot</h2>
+            <div class="chat-box">
+                <div id="chat-log"></div>
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-button">Send</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Motivational Quotes
+        const quotes = [
+            "Believe you can and you're halfway there. - Theodore Roosevelt",
+            "Do what you can, with what you have, where you are. - Theodore Roosevelt",
+            "It always seems impossible until it's done. - Nelson Mandela",
+            "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+            "The best way to predict the future is to create it. - Peter Drucker"
+        ];
+
+        // Motivabot Responses
+        const botResponses = [
+            "You're doing great! Keep pushing forward!",
+            "Every small step counts. Keep going!",
+            "Remember why you started. You've got this!",
+            "Take a deep breath and focus. You're capable of amazing things!",
+            "Progress is progress, no matter how small. Keep it up!"
+        ];
+
+        // Goal List
+        const goalList = document.getElementById('goal-list');
+        const goalForm = document.getElementById('goal-form');
+
+        // Add Goal
+        goalForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const goalInput = document.getElementById('goal');
+            if (goalInput.value.trim()) {
+                const newGoal = document.createElement('li');
+                newGoal.textContent = goalInput.value;
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', function() {
+                    goalList.removeChild(newGoal);
+                });
+                newGoal.appendChild(deleteButton);
+                goalList.appendChild(newGoal);
+                goalInput.value = '';
+            }
+        });
+
+        // New Quote Generator
+        const quoteElement = document.getElementById('quote');
+        document.getElementById('new-quote').addEventListener('click', function() {
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            quoteElement.textContent = randomQuote;
+        });
+
+        // Chat Interaction
+        const chatLog = document.getElementById('chat-log');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', function() {
+            const userMessage = chatInput.value.trim();
+            if (userMessage) {
+                // Add user message to chat log
+                const userMessageElement = document.createElement('div');
+                userMessageElement.textContent = `You: ${userMessage}`;
+                chatLog.appendChild(userMessageElement);
+
+                // Add Motivabot response
+                const botResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
+                const botMessageElement = document.createElement('div');
+                botMessageElement.textContent = `Motivabot: ${botResponse}`;
+                botMessageElement.classList.add('bot');
+                chatLog.appendChild(botMessageElement);
+
+                // Clear input
+                chatInput.value = '';
+                chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll to bottom
+            }
+        });
+    </script>
+    
+</body>
+</html>
