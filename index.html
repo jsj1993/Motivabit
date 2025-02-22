@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivabot - Your Golden AI Motivational Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Motivabot</h1>
+
+        <!-- Goal Setting Section -->
+        <section class="goal-section">
+            <h2>Set Your Goals</h2>
+            <form id="goal-form">
+                <input type="text" id="goal" placeholder="Enter your goal..." required>
+                <button type="submit">Add Goal</button>
+            </form>
+            <ul id="goal-list"></ul>
+        </section>
+
+        <!-- Progress Tracking Section -->
+        <section class="progress-section">
+            <h2>Track Your Progress</h2>
+            <div class="progress-bar">
+                <div class="progress-bar-fill"></div>
+            </div>
+            <p>You're 50% closer to your goal!</p>
+        </section>
+
+        <!-- Motivational Content Section -->
+        <section class="motivation-section">
+            <h2>Daily Motivation</h2>
+            <p class="quote" id="quote">"The only limit to our realization of tomorrow is our doubts of today." - Franklin D. Roosevelt</p>
+            <button id="new-quote">Get New Quote</button>
+        </section>
+
+        <!-- Chat Interaction Section -->
+        <section class="interaction-section">
+            <h2>Chat with Motivabot</h2>
+            <div class="chat-box">
+                <div id="chat-log"></div>
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="send-button">Send</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
