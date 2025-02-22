@@ -1,0 +1,49 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 2rem;
+    padding: 2rem;
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+h1 {
+    text-align: center;
+    color: #ffd700;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+h2 {
+    color: #ffd700;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* Goal Setting Section */
+.goal-section {
+    margin-bottom: 2rem;
+}
+
+#goal-form {
+    display: flex;
+    gap: 10px;
+}
+
+#goal-form
